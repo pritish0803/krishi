@@ -1,0 +1,12 @@
+{% extends "restaurant/new_base.html" %}
+{% block head_title %}List of {{block.super}}{% endblock head_title %}
+{% block content %}
+<h2>Restaurant</h2>
+<ul>
+{% for obj in object_list %}
+	
+		<li>{{obj}} {{obj.catagory}} {{obj.location}}</li>
+	
+{% endfor %}
+</ul>
+{% endblock content%}

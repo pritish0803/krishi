@@ -1,0 +1,12 @@
+{% extends "restaurant/new_base.html" %}
+{% block head_title %}welcome to {{block.super}}{% endblock head_title %}
+{% block content %}
+<p>random number is {{ num }}</p>
+<p>
+{% for item in some_list %}
+	{% if item|divisibleby:"2" %}
+		even number
+	{% endif %}
+{% endfor %}
+</p>
+{% endblock content%}
