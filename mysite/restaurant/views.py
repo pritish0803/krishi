@@ -29,3 +29,4 @@ class restaurant_view(ListView):
 		else:
 			queryset=Restaurant.objects.all()
 		return queryset
+
