@@ -26,3 +26,27 @@ def signup(request):
 	else:
         	form = SignUpForm()
 	return render(request, 'signup.html', {'form': form})
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = SignUpForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request,'Your profile was successfully updated!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_form = SignUpForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
+def Crops_view(request):
+    if request.method=='GET':
+        if request.GET.get('crop'):
+			crop=request.GET.get('crop')
+			all_crop=Crop.objects.get(crop_name=crop)
